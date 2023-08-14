@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IP Lookup</title>
+	<link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+<body>
+	<style>
+		table {
+	  border-collapse: collapse;
+	  width: 100%;
+	  font-family: Arial, sans-serif;
+	}
+	
+	th, td {
+	  text-align: left;
+	  padding: 8px;
+	}
+	
+	th {
+	  background-color: #f2f2f2;
+	}
+	
+	tr:nth-child(even) {
+	  background-color: #f2f2f2;
+	}
+	
+	tr:hover {
+	  background-color: #ddd;
+	}
+	
+	</style>
+<style>
+    #output {
+        border: 1px solid #ccc;
+        padding: 10px;
+        height: 200px;
+        color:black;
+    }
+    </style>
+	<div class="navbar">
+		<ul>
+			<li><a href="{{ url_for('ping')}}">Ping Test</a></li>
+			<li><a href="{{ url_for('ports')}}">Port Scanner</a></li>
+			<li><a href="{{ url_for('ipconfig')}}">IP Lookup </a></li>
+			<li><a href="{{ url_for('tracert')}}">Trace route</a></li>
+			<li><a href="{{ url_for('dnslookup')}}">DNS Lookup</a></li>
+			<li class="admin-icon"><a href="#"><i class="fas fa-user-shield"></i></a></li>
+			<li><a href="/logout">Logout</a></li>
+		</ul>
+	</div>
+	<div class="main" style="display: flex;">
+	
+	<div class="content" style="display: flex;flex-direction: column;">
+
+		<div class="input-section"style="width:500px">
+			<h2>
+			IP Lookup
+			</h2>
+			<form action="/ipconfig">
+				<label for="input">
+				Enter IP:
+				</label>
+				<input type="text" id="input" name="ip">
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+		<div class="output-section"style="width:500px">
+			<h2>IP Information
+			</h2>
+			<div id="output">
+				<table>
+					{% if output['status']==404 %}
+					{% else %}
+					{% for key, value in output.items() %}
+						<!--  -->
+							<tr>
+								<td style="font-weight: bolder; text-transform: capitalize;">{{ key }}</td>
+								<td>:</td>
+								<td>{{ value }}</td>
+							</tr>
+					{% endfor %}
+					{% endif %}
+					</table>
+			</div>
+		</div>
+	</div>
+	<div style="display:'none';height:520px;width:700px;background-image: url(' {{ src }} ');background-color: #eee;background-position: center;background-size: cover; margin:20px; margin-top: 35px;" alt="Ping Plots">
+		<table style="width:100%;height:100%;font-size: larger; border: solid;">
+			{% if output['status']==404 %}
+			{% else %}
+			{% for key, value in output.items() %}
+				<!--  -->
+					<tr>
+						<td style="font-weight: bolder; text-transform: capitalize;">{{ key }}</td>
+						<td>:</td>
+						<td>{{ value }}</td>
+					</tr>
+			{% endfor %}
+			{% endif %}
+			</table>
+
+	</div>
+</div>
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

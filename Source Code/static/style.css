@@ -1,0 +1,109 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, sans-serif;
+}
+
+.navbar {
+	background-color: #333;
+	height: 100%;
+	width: 250px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow-x: hidden;
+	padding-top: 20px;
+}
+
+.navbar ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.navbar li {
+	padding: 8px 16px;
+	color: #fff;
+	font-size: 18px;
+	border-bottom: 1px solid #555;
+}
+
+.navbar li a {
+	text-decoration: none;
+	color: #fff;
+}
+
+.admin-icon {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+.admin-icon a {
+	display: block;
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	background-color: #f00;
+	color: #fff;
+	text-align: center;
+	line-height: 30px;
+}
+
+.content {
+	margin-left: 250px;
+	padding: 20px;
+}
+
+h1, h2 {
+	font-size: 36px;
+	color: #333;
+	margin-bottom: 20px;
+
+}
+
+.input-section, .output-section {
+	display: inline-block;
+	vertical-align: top;
+	width: 45%;
+	margin: 2.5%;
+	padding: 20px;
+	background-color: #eee;
+}
+
+form {
+	margin-bottom: 10px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+input[type="text"] {
+	width: 100%;
+	padding: 5px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+button[type="submit"] {
+	background-color: #333;
+	color: #fff;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+#output {
+	border: 1px solid #ccc;
+	padding: 10px;
+	height: 200px;
+	overflow-y: scroll;
+}

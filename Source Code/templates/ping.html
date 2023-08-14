@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Ping Test</title>
+	<link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+<script>
+function deleteImage(filename) {
+	alert('Function Called');
+  $.ajax({
+    type: 'POST',
+    url: '/delete',
+    data: {'filename': filename},
+    success: function(data) {
+      console.log('Image deleted successfully');
+    },
+    error: function(xhr, status, error) {
+      console.log('Error deleting image:', error);
+    }
+  });
+}
+
+window.addEventListener('beforeunload', function(event) {
+	deleteImage('./static/ping_plot.png');
+  });
+</script>
+</html>
+<body>
+	<style>
+		#output {
+			border: 1px solid #ccc;
+			padding: 10px;
+			height: 200px;
+			color: red;
+			font-family: consolas;
+		}
+	</style>
+	<div class="navbar">
+		<ul>
+			<li><a href="{{ url_for('ping')}}">Ping Test</a></li>
+			<li><a href="{{ url_for('ports')}}">Port Scanner</a></li>
+			<li><a href="{{ url_for('ipconfig')}}">IP Lookup </a></li>
+			<li><a href="{{ url_for('tracert')}}">Trace route</a></li>
+			<li><a href="{{ url_for('dnslookup')}}">DNS Lookup</a></li>
+			<li class="admin-icon"><a href="#"><i class="fas fa-user-shield"></i></a></li>
+			<li><a href="/logout">Logout</a></li>
+		</ul>
+	</div>
+	<div class="main" style="display: flex;">
+		<div class="content" style="display: flex;flex-direction: column;">
+			
+				<div class="input-section" style="width:500px">
+					<h2>
+						Ping Test
+					</h2>
+					<form action="/pingtest" method='POST'>
+						<label for="input">
+							Enter IP address or Hotname:
+						</label>
+						<input type="text" id="input" name="input">
+						<button type="submit">Submit</button>
+					</form>
+				</div>
+				<div class="output-section" style="width:500px">
+					<h2>
+						Ping Output
+					</h2>
+					<div id="output">
+						<p>{{ output | safe }}</p>
+					</div>
+				</div>
+			
+			
+		</div>
+		<div style="display:'none';height:520px;width:700px;background-image: url(' {{ src }} ');background-position: center;background-size: cover; margin:20px; margin-top: 35px;" alt="Ping Plots">
+
+
+	</div>
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NetFlask - Login</title>
+<style>
+    * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: #eee;
+}
+
+.login-form {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 50px;
+	border-radius: 10px;
+	box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+h1{
+    margin-top:100px;
+    text-align: center;
+	margin-bottom: 20px;
+    text-transform: uppercase;
+    color:red;
+	font-size:80px;
+	padding-top:20px;
+}
+
+h2 {
+	text-align:center;
+	color: #333;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+
+input[type="text"], input[type="password"] {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+button[type="submit"] {
+	background-color: #333;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+button[type="submit"]:hover {
+	background-color: #555;
+}
+
+#details{
+	    /* width: 300px; */
+		background-color: #1C2826;
+    /* height: fit-content; */
+    height: 600px;
+    margin: 0 130px;
+    border-radius: 15px;
+    box-shadow: black;
+    width: 700px;
+    box-shadow: 3px 3px 12px;
+}
+
+table, p{
+	padding:20px 40px;
+	color:aliceblue;
+	font-family: arial;
+	font-size: x-large;
+	width:500px;
+}
+
+.notification-container {
+  position: absolute;
+  color:red;
+  font-family: consolas;
+  font-weight: bolder;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 10px;
+  display: block;
+  z-index: 1;
+  font-size: 20px;
+}
+
+.notification-container.show {
+  display: block;
+  animation: fade-in 0.5s forwards;
+}
+
+.notification-container.hide {
+  animation: slide-out 0.5s forwards;
+}
+
+.notification-container p {
+  margin: 0;
+
+  font-weight: bold;
+}
+
+.notification-container .icon {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+}
+
+
+</style>
+
+<script>
+
+const notificationContainer = form.querySelector('.notification-container');
+
+
+function showNotification(message) {
+  const icon = '<i class="icon fa fa-lock"></i>';
+  const content = `${icon}<p>${message}</p>`;
+  notificationContainer.innerHTML = content;
+  notificationContainer.classList.add('show');
+  
+  setTimeout(() => {
+    notificationContainer.classList.remove('show');
+    notificationContainer.classList.add('hide');
+    
+    setTimeout(() => {
+      notificationContainer.classList.remove('hide');
+      notificationContainer.innerHTML = '';
+    }, 500);
+  }, 3000);
+}
+</script>
+
+</head>
+<body>
+	<div id="details">
+
+		
+		
+    <h1>NetFlask</h1>
+	<!-- <table>
+	<tr><td>Name</td><td>:</td><td>NARGIS SHAH</td></tr>
+
+		<tr><td>Enrollment</td><td>:&nbsp</td> <td>59</td></tr>
+		
+		<tr><td>Subject</td><td>:&nbsp</td> <td>ITL 4</td> </tr>
+		
+		<tr><td>Class</td><td>:&nbsp</td> <td>3 year IT</td></tr>
+<br></table> -->
+		<p><label style="color:rgb(255, 255, 255);font-weight:bolder;">About: </label><br>
+		<small style="font-family:arial; text-align: justify;">Netflask is a Python project that uses Flask as its backend framework. It provides useful networking-related functionalities such as ping tests, DNS and IP lookup, finding hops to a destination, and open port scanning on a host.</small>
+	</p>
+    {% if error %}
+	<div class="notification-container" id="1">{{ error }} &nbsp<label  style='color:black;font-family:cursive;font-weight:bolder;' onclick="document.getElementById('1').style.display='none'">X</label></div>
+    {% endif %}
+	<div class="login-form">
+		
+		<h2>Login</h2>
+		<form method="post" action="/auth">
+
+			<input type="text" id="username" name="username" placeholder="Username">
+			<input type="password" id="password" name="password" placeholder="Password">
+			<button type="submit">Login</button>
+		</form>
+	</div>
+</div>
+</body>
+</html>

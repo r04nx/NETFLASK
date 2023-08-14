@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+<body>
+	<div class="navbar">
+		<ul>
+			<li><a href="{{ url_for('ping')}}">Ping</a></li>
+			<li><a href="{{ url_for('ports')}}">Port Scanner</a></li>
+			<li><a href="{{ url_for('ipconfig')}}">IP config </a></li>
+			<li><a href="{{ url_for('tracert')}}">Trace route</a></li>
+			<li><a href="{{ url_for('dnslookup')}}">DNS Lookup</a></li>
+			<li class="admin-icon"><a href="#"><i class="fas fa-user-shield"></i></a></li>
+			<li><a href="/logout">Logout</a></li>
+		</ul>
+	</div>
+</body>
+</html>

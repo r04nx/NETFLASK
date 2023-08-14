@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+<body>
+	<div class="navbar">
+		<ul>
+			<li><a href="{{ url_for('ping')}}">Ping Test</a></li>
+			<li><a href="{{ url_for('ports')}}">Port Scanner</a></li>
+			<li><a href="{{ url_for('ipconfig')}}">IP Lookup </a></li>
+			<li><a href="{{ url_for('tracert')}}">Trace route</a></li>
+			<li><a href="{{ url_for('dnslookup')}}">DNS Lookup</a></li>
+			<li class="admin-icon"><a href="#"><i class="fas fa-user-shield"></i></a></li>
+			<li><a href="/logout">Logout</a></li>
+		</ul>
+	</div>
+	<div class="content">
+
+		<div class="input-section">
+			<h2>
+				{% block title %}
+				{% endblock %}
+			</h2>
+			<form action="/portscanner" method='POST' >
+				<label for="input">
+					{% block input %}
+					{% endblock %}
+				</label>
+				<input type="text" id="input" name="input">
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+		<div class="output-section">
+			<h2>
+				{% block outputtitle %}
+				{% endblock %}
+			</h2>
+			<div id="output">
+				{% block output %}
+				{% endblock %}</div>
+		</div>
+
+	</div>
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

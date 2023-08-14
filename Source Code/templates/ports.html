@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %} Port Scanner {% endblock %}
+
+{% block input %}
+Enter IP Address 
+{% endblock %}
+
+{% block outputtitle %}
+Open Ports
+{% endblock %}
+
+
+{% block output %}
+
+<style>
+    table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+</style>
+{% if portdict %}
+<table>
+<tbody>
+<th>Sr no.</th>
+<th>Port no.</th>
+<th>Service</th>
+<th>Status</th>
+<th>Version</th>
+{% for d in portdict %}
+<tr>
+  <td>{{ loop.index }}</td>
+  <td>{{ d.port }}</td>
+  <td>{{ d.service }}</td>
+  <td>{{ d.status }}</td>
+  <td>{{ d.version }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+  <p style=" text-align:center;margin:10px auto;">No ports found. {{ portdict }}</p>
+{% endif %}
+
+{% endblock %}

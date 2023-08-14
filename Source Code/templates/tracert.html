@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Traceroute</title>
+	<link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+<body>
+<style>
+    #output {
+        border: 1px solid #ccc;
+        padding: 10px;
+        height: 200px;
+
+    }
+    </style>
+	<div class="navbar">
+		<ul>
+			<li><a href="{{ url_for('ping')}}">Ping Test</a></li>
+			<li><a href="{{ url_for('ports')}}">Port Scanner</a></li>
+			<li><a href="{{ url_for('ipconfig')}}">IP Lookup </a></li>
+			<li><a href="{{ url_for('tracert')}}">Trace route</a></li>
+			<li><a href="{{ url_for('dnslookup')}}">DNS Lookup</a></li>
+			<li class="admin-icon"><a href="#"><i class="fas fa-user-shield"></i></a></li>
+			<li><a href="/logout">Logout</a></li>
+		</ul>
+	</div>
+	<div class="content">
+
+		<div class="input-section">
+			<h2>
+			Traceroute
+			</h2>
+			<form action="/traceroute" method='POST' >
+				<label for="input">
+				Enter IP address or Hotname:
+				</label>
+				<input type="text" id="input" name="input">
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+		<div class="output-section">
+			<h2>
+			Traceroute Output
+			</h2>
+			<div id="output" style="width:100%">
+			<p style='font-family: monospace; font-weight: bolder;'>{{ output | safe }}</p>
+        </div>
+		</div>
+
+	</div>
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>
